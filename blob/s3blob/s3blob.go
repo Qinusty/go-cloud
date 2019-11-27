@@ -687,6 +687,7 @@ func (b *bucket) Copy(ctx context.Context, dstKey, srcKey string, opts *driver.C
 		CopySource: aws.String(b.name + "/" + srcKey),
 		Key:        aws.String(dstKey),
 	}
+	input.SetMetadataDirective("REPLACE")
 	if opts.BeforeCopy != nil {
 		asFunc := func(i interface{}) bool {
 			switch v := i.(type) {
